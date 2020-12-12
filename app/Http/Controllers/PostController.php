@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -20,6 +21,7 @@ class PostController extends Controller
         $post->desc = $request->desc;
         $post->category_id = $request->category_id;
         $post->content = $request->contentPost;
+        $post->user_id = auth()->user()->id;
         $post->save();
     }
 

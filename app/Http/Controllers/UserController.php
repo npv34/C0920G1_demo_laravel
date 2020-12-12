@@ -43,17 +43,27 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    function update($id) {
+    function update($id)
+    {
         $user = User::find($id);
         return view('users.update', compact('user'));
     }
 
-    function edit($id, Request $request) {
+    function edit($id, Request $request)
+    {
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
         return redirect()->route('user.index');
+    }
+
+    function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $users = User::where('name', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('email', 'LIKE', '%' . $keyword . '%')->get();
+        return view('users.index', compact('users'));
     }
 
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $table = 'categories';
 
     function posts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

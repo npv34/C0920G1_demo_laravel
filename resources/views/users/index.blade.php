@@ -1,6 +1,10 @@
 @extends('layouts.master')
 @section('content')
     <a href="{{ route('user.create') }}" class="btn btn-success">Add</a>
+    <form action="{{ route('user.search') }}" method="get">
+        <input type="text" name="keyword">
+        <button type="submit">Search</button>
+    </form>
     <table class="table">
         <thead class="thead-light">
         <tr>
