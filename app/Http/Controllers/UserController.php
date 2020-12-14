@@ -35,12 +35,12 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    function delete($id): \Illuminate\Http\RedirectResponse
+    function delete($id): \Illuminate\Http\JsonResponse
     {
         $user = User::find($id);
         $user->roles()->detach();
         $user->delete();
-        return redirect()->route('user.index');
+        return response()->json(['message' => 'xoa tahnh cong']);
     }
 
     function update($id)
@@ -58,12 +58,12 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    function search(Request $request)
+    function search(Request $request): \Illuminate\Http\JsonResponse
     {
         $keyword = $request->keyword;
         $users = User::where('name', 'LIKE', '%' . $keyword . '%')
             ->orWhere('email', 'LIKE', '%' . $keyword . '%')->get();
-        return view('users.index', compact('users'));
+        return response()->json($users);
     }
 
 }

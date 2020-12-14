@@ -85,9 +85,9 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{ asset('js/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+<script src="{{ asset('js/my.js') }}"></script>
 {{--<!-- Core plugin JavaScript-->--}}
 {{--<script src="vendor/jquery-easing/jquery.easing.min.js"></script>--}}
 

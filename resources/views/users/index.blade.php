@@ -1,10 +1,9 @@
 @extends('layouts.master')
 @section('content')
     <a href="{{ route('user.create') }}" class="btn btn-success">Add</a>
-    <form action="{{ route('user.search') }}" method="get">
-        <input type="text" name="keyword">
-        <button type="submit">Search</button>
-    </form>
+
+    <input type="text" name="keyword" id="search-user">
+
     <table class="table">
         <thead class="thead-light">
         <tr>
@@ -15,9 +14,9 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="users-list">
         @foreach($users as $key => $user)
-            <tr>
+            <tr class="user-item">
                 <th scope="row">{{ $key + 1 }}</th>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
