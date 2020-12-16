@@ -19,6 +19,14 @@
         </div>
     </form>
 
+    <form action="{{ route('changeLanguage') }}" method="post">
+        @csrf
+        <select name="language" id="" onchange="this.form.submit()">
+            <option {{ session('locale') == 'vi' ? 'selected' : '' }} value="vi">VN</option>
+            <option {{ session('locale') == 'en' ? 'selected' : '' }} value="en">EN</option>
+        </select>
+    </form>
+
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 

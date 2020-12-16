@@ -22,8 +22,15 @@ Route::post('/login', [AuthController::class,'login'])->name('login.submit');
 Route::get('/',[\App\Http\Controllers\HomeController::class,'index']);
 Route::get('posts/{id}/detail',[HomeController::class,'showDetailPost'])->name('showDetailPost');
 
+Route::get('weather',[\App\Http\Controllers\WeatherController::class, 'index']);
 
-Route::middleware('auth')->prefix('admin')->group(function (){
+Route::get('/auth/redirect/{provider}', [AuthController::class,'redirect'])->name('login.github');
+Route::get('/callback/{provider}', [AuthController::class,'callback']);
+
+Route::middleware(['auth','setLocale'])->prefix('admin')->group(function (){
+
+    Route::post('change-language',[\App\Http\Controllers\LangController::class,'changeLanguage'])->name('changeLanguage');
+
     Route::prefix('users')->group(function (){
         Route::get('/', [UserController::class,'index'])->name('user.index');
         Route::get('/create',[UserController::class,'create'])->name('user.create');
@@ -42,7 +49,7 @@ Route::middleware('auth')->prefix('admin')->group(function (){
 
     Route::get('/dashboard', function () {
         return view('dashboard');
-    });
+    })->name('dashboard');
 
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
 });

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -18,6 +19,9 @@ class UserController extends Controller
 
     function create()
     {
+        if (!Gate::allows('create-user')) {
+            abort(403);
+        }
         $roles = Role::all();
         return view('users.add', compact('roles'));
     }

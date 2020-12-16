@@ -16,5 +16,10 @@
     <input type="password" name="password">
     <button type="submit">Login</button>
 </form>
+<div class="form-group row mb-0">
+    <div class="col-md-8 offset-md-4">
+        <a href="{{ route('login.github','github') }}" class="btn btn-primary"><i class="fa fa-github"></i> Github</a>
+    </div>
+</div>
 </body>
 </html>

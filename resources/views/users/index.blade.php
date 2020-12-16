@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('content')
+    @can('create-user')
     <a href="{{ route('user.create') }}" class="btn btn-success">Add</a>
-
+    @endcan
     <input type="text" name="keyword" id="search-user">
 
     <table class="table">
